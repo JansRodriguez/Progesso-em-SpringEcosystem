@@ -31,7 +31,7 @@ public class ProdutoServicos {
 
     //Vamos ter que ter um Método responsavel para cadastrar os produtos.
     //Quando não sabemos o que teremos como resposta (ProdutoModelo ou RespostaModelo), podemos colocar um interrogação
-    public ResponseEntity<?> cadastrar(ProdutoModelo pm){
+    public ResponseEntity<?> cadastrarAlterar(ProdutoModelo pm, String acao){
         if(pm.getNome().equals("")){
             rm.setMensagem("O nome do produto é obrigatório");//set(Especificar)
             return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
@@ -41,7 +41,12 @@ public class ProdutoServicos {
             return new ResponseEntity<RespostaModelo>(rm, HttpStatus.BAD_REQUEST);
         }
         else{
-            return new ResponseEntity<ProdutoModelo>(pr.save(pm), HttpStatus.CREATED);
+    //Atualização do método, agora tendo a função de cadastrar ou alterar
+            if(acao.equals("cadastrar")){
+                return new ResponseEntity<ProdutoModelo>(pr.save(pm), HttpStatus.CREATED);
+            }else{
+                return new ResponseEntity<ProdutoModelo>(pr.save(pm), HttpStatus.OK);
+            }
         }
     }
 }
