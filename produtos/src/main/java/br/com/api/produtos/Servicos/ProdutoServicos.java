@@ -49,4 +49,13 @@ public class ProdutoServicos {
             }
         }
     }
+
+    //Método para remover dados na camada de Serviços
+    public ResponseEntity<RespostaModelo> remover(long identificador){
+
+        pr.deleteById(identificador);
+        rm.setMensagem("O arquivo foi deletado com sucesso!!!");
+
+        return new ResponseEntity<RespostaModelo>(rm, HttpStatus.OK);
+    }
 }
