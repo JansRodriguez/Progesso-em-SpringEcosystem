@@ -1,4 +1,4 @@
-export default()=>{
+export default({vetor})=>{
     return(
         <table className="table">
             <thead> {/* Tag semantica de marca do cabeçalho da tabela */}
@@ -10,12 +10,23 @@ export default()=>{
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td> {/* Tag do corpo da tabela */}
+                {/* <tr>
+                    <td></td> Tag do corpo da tabela 
                     <td></td>
                     <td></td>
                     <td></td>
-                </tr>
+                </tr> */}
+                {
+                    vetor.map((objeto, indice)=>(
+                    <tr key={indice}>
+                        <td>{indice+1}</td>
+                        <td>{objeto.nome}</td>
+                        <td>{objeto.marca}</td>
+                        <td><button className="btn btn-success">Selecionar</button></td>
+                    </tr>
+                    ))
+                }
+
             </tbody>
         </table>
     )
