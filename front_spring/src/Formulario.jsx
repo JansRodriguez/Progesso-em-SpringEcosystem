@@ -1,4 +1,4 @@
-export default({botao, eventoAoDigitar})=>{
+export default({botao, eventoAoDigitar, aoCadastrar})=>{
     return(
         <form action="#">
             <input type="text" onChange={eventoAoDigitar} name= 'nome' placeholder="Nome" className="form-control"/>
@@ -7,7 +7,7 @@ export default({botao, eventoAoDigitar})=>{
             {
                 botao
                 ?
-                <input type="button" value="Cadastrar" className="btn btn-primary"/>
+                <input type="button" value="Cadastrar" onClick={aoCadastrar} className="btn btn-primary"/>
                 :
                 <>
                     <input type="button" value="Alterar" className="btn btn-warning"/>

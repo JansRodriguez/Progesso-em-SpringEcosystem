@@ -30,14 +30,31 @@ export default ()=>{
         .then(retorno_convertido => setProdutos(retorno_convertido));
         });
     //Função para Obtendo dados do Formulário
-    const aoDigitar =(element)=>{
-        setObjProduto({...objProduto, [element.target.name]: element.target.value})
+    const aoDigitar = (element)=>{
+        setObjProduto({...objProduto, [element.target.name]: element.target.value})//Os 3 ptinhos, ..., está pegando os valores de objProduto.
+        //Após, as informações que serão alteradas, no caso nome e marca. Os que possuem atributos "name".
     }
-
+    //Função para cadastrar - 
+    const cadastrar =()=>{
+        //Por padrão, o fetch realizada requisição do tipo GET, precisa ser configurado para o tipo POST, pois será enviado um dado para o BD.
+        fetch('http://localhost:8080/cadastrar', {
+            //Características completares para realizar o POST
+            method:'post',
+            body:JSON.stringify(objProduto),//O corpo/body sendo convertido para texto.
+            headers:{
+                'Content-type':'application/json',
+                'Accept':'application/json'
+            }
+        })
+        .then(retorno => retorno.json())  //O .then retorna uma promise, uma promessa: O then só executada, quando o fetch fizer a requisitação. No caso, promessa que vaiser convertida para JSON.
+        .then(retorno_convertido =>{
+            console.log(retorno_convertido);
+        })//Esse segundo then só vai ser executado quando o 'retorno' da api for convertido para json
+    }
     return(
         <>
-            <p>{JSON.stringify(objProduto)}</p>
-            <Formulario botao={btnCadastrar}    eventoAoDigitar={aoDigitar} />{/*Inserindo uma propriedade no formalário e definindo sua props  no component Formulario*/}
+            {/* <p>{JSON.stringify(objProduto)}</p> //Linha para teste*/}
+            <Formulario botao={btnCadastrar}    eventoAoDigitar={aoDigitar} aoCadastrar={cadastrar}/>{/*Inserindo uma propriedade no formalário e definindo sua props  no component Formulario*/}
             <Tabela vetor={produtos}/>
         </>
     )
