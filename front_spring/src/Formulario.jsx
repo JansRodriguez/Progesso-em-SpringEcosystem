@@ -1,8 +1,8 @@
-export default({botao})=>{
+export default({botao, eventoAoDigitar})=>{
     return(
         <form action="#">
-            <input type="text" placeholder="Nome" className="form-control"/>
-            <input type="text" placeholder="Marca" className="form-control"/>
+            <input type="text" onChange={eventoAoDigitar} name= 'nome' placeholder="Nome" className="form-control"/>
+            <input type="text" onChange={eventoAoDigitar} name='marca' placeholder="Marca" className="form-control"/>
 
             {
                 botao
