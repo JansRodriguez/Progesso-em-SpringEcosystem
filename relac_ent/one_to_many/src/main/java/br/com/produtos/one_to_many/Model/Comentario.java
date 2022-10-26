@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Comentario {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
@@ -22,5 +22,6 @@ public class Comentario {
     private String autor;
 
     private String texto;
-    
+
+
 }

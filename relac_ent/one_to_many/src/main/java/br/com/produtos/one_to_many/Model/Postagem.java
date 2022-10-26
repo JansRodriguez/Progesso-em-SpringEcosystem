@@ -18,16 +18,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Postagem {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
     private String titulo;
-    
+
     private String texto;
 
     @OneToMany
     @JoinColumn(name = "codigo_postagem")
     private List<Comentario> comentario;
+    
 }
